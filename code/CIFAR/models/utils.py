@@ -210,7 +210,7 @@ class BasicBlockWiseConvNet(nn.Module):
 		while batch_num < nBatch:
 			for _input, target in data_loader:
 				if torch.cuda.is_available():
-					target = target.cuda(async=True)
+					target = target.cuda(non_blocking=True)
 					_input = _input.cuda()
 				input_var = torch.autograd.Variable(_input, volatile=True)
 				
