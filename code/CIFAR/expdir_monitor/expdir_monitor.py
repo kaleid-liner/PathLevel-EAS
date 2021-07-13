@@ -7,10 +7,13 @@ Output: 'Results' after training
 import json
 import os
 import hashlib
+import time
 
 import torch
 
 from models.run_manager import RunConfig, get_model_by_name, RunManger
+from nni.compression.pytorch.utils.counter import count_flops_params
+from nni.compression.pytorch import ModelSpeedup, apply_compression_results
 
 
 def hash_str2int(text: str, algo='md5'):
@@ -35,39 +38,39 @@ class ExpdirMonitor:
 	def __init__(self, expdir):
 		self.expdir = os.path.realpath(expdir)
 		os.makedirs(self.expdir, exist_ok=True)
-	
+
 	@property
 	def logs_path(self):
 		return '%s/logs' % self.expdir
-	
+
 	@property
 	def save_path(self):
 		return '%s/checkpoint' % self.expdir
-	
+
 	@property
 	def output_path(self):
 		return '%s/output' % self.expdir
-	
+
 	@property
 	def init_path(self):
 		return '%s/init' % self.expdir
-	
+
 	@property
 	def run_config_path(self):
 		return '%s/run.config' % self.expdir
-	
+
 	@property
 	def net_config_path(self):
 		return '%s/net.config' % self.expdir
-	
+
 	@property
 	def net_str_path(self):
 		return '%s/net.str' % self.expdir
-	
+
 	@property
 	def trans_op_path(self):
 		return '%s/trans.ops' % self.expdir
-	
+
 	@staticmethod
 	def prepare_folder_for_valid(net_str, model, run_config, exp_dir, trans_ops, mimic_run_config=None, no_init=False):
 		os.makedirs(exp_dir, exist_ok=True)
@@ -80,14 +83,14 @@ class ExpdirMonitor:
 			}, monitor.init_path)
 		else:
 			mimic_run_config = None
-		
+
 		# dump net_str and transformation ops
 		json.dump({'net_str': net_str}, open(monitor.net_str_path, 'w'), indent=4)
 		json.dump(trans_ops, open(monitor.trans_op_path, 'w'), indent=4)
-		
+
 		if mimic_run_config:
 			json.dump(mimic_run_config, open('%s/mimic_run' % monitor.expdir, 'w'), indent=4)
-	
+
 	def load_output_val(self):
 		if os.path.isfile(self.output_path):
 			out_val = json.load(open(self.output_path, 'r'))
@@ -96,7 +99,7 @@ class ExpdirMonitor:
 			elif 'test_acc' in out_val:
 				return float(out_val['test_acc'])
 		return 0.0
-	
+
 	def load_run_config(self, print_info=False, dataset='C10+'):
 		if os.path.isfile(self.run_config_path):
 			run_config = json.load(open(self.run_config_path, 'r'))
@@ -109,7 +112,7 @@ class ExpdirMonitor:
 			for k, v in run_config.get_config().items():
 				print('\t%s: %s' % (k, v))
 		return run_config
-	
+
 	def load_model(self, print_info=False):
 		assert os.path.isfile(self.net_config_path), 'No net configs found in <%s>' % self.expdir
 		net_config_json = json.load(open(self.net_config_path, 'r'))
@@ -119,9 +122,9 @@ class ExpdirMonitor:
 				if k != 'blocks':
 					print('\t%s: %s' % (k, v))
 		model = get_model_by_name(net_config_json['name']).set_from_config(net_config_json)
-		
+
 		return model
-	
+
 	def load_init(self):
 		if os.path.isfile(self.init_path):
 			if torch.cuda.is_available():
@@ -131,7 +134,7 @@ class ExpdirMonitor:
 			return checkpoint
 		else:
 			return None
-		
+
 	def run(self, pure=True, train=True, use_test_loader=True, valid_size=None, resume=False):
 		init = self.load_init()
 		dataset = 'C10+' if init is None else init.get('dataset', 'C10+')
@@ -139,38 +142,43 @@ class ExpdirMonitor:
 		run_config.renew_logs = False
 		if valid_size is not None:
 			run_config.valid_size = valid_size
-		
-		model = self.load_model(print_info=(not pure))
-		run_manager = RunManger(self.expdir, model, run_config, out_log=(not pure), resume=resume)
+
+		model = self.load_model(print_info=(not pure)).cuda()
+
+		dummy_input = torch.randn(1, 3, 32, 32).cuda()
+
+		flops, params, _ = count_flops_params(model, dummy_input, mode='full') # tuple of tensor as input
+		print(f'FLOPs: {flops/1e6:.3f}M,  Params: {params/1e6:.3f}M')
+		start = time.time()
+		for _ in range(32):
+			model(dummy_input)
+		print('elapsed time not using speedup: ', time.time() - start)
+
+		run_manager = RunManger(self.expdir, model, run_config, out_log=(not pure), resume=resume, init=init, prune=True)
+		run_manager.save_model()
 		run_manager.save_config(print_info=(not pure))
-		
-		if not resume and init is not None:
-			model_state_dict = run_manager.model.state_dict()
-			model_key = list(model_state_dict.keys())[0]
-			init_key = list(init['state_dict'].keys())[0]
-			if model_key.startswith('module.'):
-				if not init_key.startswith('module.'):
-					new_state_dict = {}
-					for key in init['state_dict']:
-						new_state_dict['module.' + key] = init['state_dict'][key]
-					init['state_dict'] = new_state_dict
-			else:
-				if init_key.startswith('module.'):
-					new_state_dict = {}
-					for key in init['state_dict']:
-						new_key = '.'.join(key.split('.')[1:])
-						new_state_dict[new_key] = init['state_dict'][key]
-					init['state_dict'] = new_state_dict
-			model_state_dict.update(init['state_dict'])
-			run_manager.model.load_state_dict(model_state_dict)
-		
+
 		if pure:
 			run_manager.pure_train()
 			run_manager.save_model()
 		elif train:
 			run_manager.train()
 			run_manager.save_model()
-		
+
+		model = self.load_model(print_info=(not pure)).cuda()
+		model.eval()
+		apply_compression_results(model, run_manager.mask_path, 'cuda')
+
+		m_speedup = ModelSpeedup(model, dummy_input, run_manager.mask_path, 'cuda')
+		m_speedup.speedup_model()
+		flops, params, _ = count_flops_params(model, dummy_input, mode='full') # tuple of tensor as input
+		print(f'FLOPs: {flops/1e6:.3f}M,  Params: {params/1e6:.3f}M')
+
+		start = time.time()
+		for _ in range(32):
+			model(dummy_input)
+		print('elapsed time when use speedup: ', time.time() - start)
+
 		if use_test_loader:
 			loss, acc = run_manager.validate(use_test_loader=True)
 			test_log = 'test_loss: %f\t test_acc: %f' % (loss, acc)
@@ -185,7 +193,7 @@ class ExpdirMonitor:
 			json.dump({'valid_loss': loss, 'valid_acc': acc, 'valid_size': run_config.valid_size},
 			          open(self.output_path, 'w'))
 		return acc
-		
+
 	def mimic_run(self, src_model_dir, sample_size=1000, distill_epochs=30, distill_lr=0.02):
 		src_monitor = ExpdirMonitor(src_model_dir)
 		src_init = src_monitor.load_init()
@@ -194,7 +202,7 @@ class ExpdirMonitor:
 			model_state_dict = src_model.state_dict()
 			model_state_dict.update(src_init['state_dict'])
 			src_model.load_state_dict(model_state_dict)
-		
+
 		init = self.load_init()
 		dataset = 'C10+' if init is None else init.get('dataset', 'C10+')
 		run_config = self.load_run_config(print_info=False, dataset=dataset)
@@ -204,17 +212,17 @@ class ExpdirMonitor:
 			model_state_dict = model.state_dict()
 			model_state_dict.update(init['state_dict'])
 			model.load_state_dict(model_state_dict)
-		
+
 		train_loader, valid_loader, test_loader = run_config.build_data_provider()
-		
+
 		if torch.cuda.is_available():
 			model = model.cuda()
 			src_model = src_model.cuda()
 		valid_loader.batch_size = 100
-		
+
 		model.mimic_run_with_linear_regression(valid_loader, src_model, sample_size=sample_size,
 		                                       distill_epochs=distill_epochs, distill_lr=distill_lr, print_info=False)
-		
+
 		torch.save({
 			'state_dict': model.state_dict(),
 		}, self.init_path)

@@ -4,6 +4,7 @@ import json
 import numpy as np
 
 import torch
+import time
 
 from models.run_manager import RunConfig, RunManger
 from models.pyramidnet import PyramidNet
@@ -42,8 +43,8 @@ run_config_cifar = {
 
 model_config = {
 	'start_planes': 16,
-	'alpha': 48,
-	'block_per_group': 1,
+	'alpha': 84,
+	'block_per_group': 18,
 	'total_groups': 3,
 	'downsample_type': 'avg_pool',  # avg, max
 	######################################################
@@ -71,15 +72,15 @@ if __name__ == '__main__':
 	parser.add_argument('--resume', action='store_true')
 	parser.add_argument('--train', action='store_true')
 	parser.add_argument('--gpu', help='gpu available', default='0')
-	
+
 	args = parser.parse_args()
-	
+
 	torch.manual_seed(args.manual_seed)
 	torch.cuda.manual_seed_all(args.manual_seed)
 	np.random.seed(args.manual_seed)
-	
+
 	os.environ['CUDA_VISIBLE_DEVICES'] = args.gpu
-	
+
 	if args.dataset in ['C10', 'C100', 'C10+', 'C100+']:
 		run_config_cifar['dataset'] = args.dataset
 		run_config = RunConfig(**run_config_cifar)
@@ -87,7 +88,7 @@ if __name__ == '__main__':
 		n_classes = 10
 	else:
 		raise NotImplementedError
-	
+
 	if len(args.path) == 0:
 		args.path = '../../Exp/TrainedNets/PyramidNet' \
 		            '/%s/L=%d_alpha=%d' % \
@@ -98,7 +99,7 @@ if __name__ == '__main__':
 		else:
 			args.path += '#groups3x3=%d' % model_config['groups_3x3']
 		args.path += '#' + os.uname()[1]
-	
+
 	# print configurations
 	print('Run config:')
 	for k, v in run_config.get_config().items():
@@ -106,18 +107,31 @@ if __name__ == '__main__':
 	print('Network config:')
 	for k, v in model_config.items():
 		print('\t%s: %s' % (k, v))
-	
-	model = PyramidNet.set_standard_net(data_shape=data_shape, n_classes=n_classes, **model_config)
+
+	model = PyramidNet.set_standard_net(data_shape=data_shape, n_classes=n_classes, **model_config).cuda()
+	dummy_input = torch.randn(1, 3, 32, 32).cuda()
+	torch.onnx.export(model, dummy_input, 'pyramidnet_standard.onnx', verbose=True)
+	model.eval()
+	from nni.compression.pytorch.utils.counter import count_flops_params
+	flops, params, results = count_flops_params(model, dummy_input)
+	print(f"FLOPs: {flops}, params: {params}")
+	for _ in range(32):
+		use_mask_out = model(dummy_input)
+	start = time.time()
+	for _ in range(32):
+		use_mask_out = model(dummy_input)
+	print('elapsed time when use mask: ', time.time() - start)
+
 	run_manager = RunManger(args.path, model, run_config, out_log=True, resume=True)
-	
+
 	run_manager.save_config()
 	if args.train:
 		run_manager.train()
-	
+
 	loss, acc = run_manager.validate()
 	test_log = 'test_loss: %f\t test_acc: %f' % (loss, acc)
 	run_manager.write_log(test_log, prefix='test')
 	json.dump({'test_loss': '%f' % loss, 'test_acc': '%f' % acc}, open('%s/output' % args.path, 'w'))
-	
+
 	run_manager.save_model()
 

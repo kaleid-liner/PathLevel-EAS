@@ -1,0 +1,2635 @@
+input: "actual_input_1"
+input: "468"
+input: "469"
+output: "467"
+name: "Conv_0"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 2
+  ints: 2
+  type: INTS
+}
+
+input: "467"
+output: "317"
+name: "Clip_1"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "317"
+input: "471"
+input: "472"
+output: "470"
+name: "Conv_2"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 32
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "470"
+output: "320"
+name: "Clip_3"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "320"
+input: "474"
+input: "475"
+output: "473"
+name: "Conv_4"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "473"
+input: "477"
+input: "478"
+output: "476"
+name: "Conv_5"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "476"
+output: "325"
+name: "Clip_6"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "325"
+input: "480"
+input: "481"
+output: "479"
+name: "Conv_7"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 96
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 2
+  ints: 2
+  type: INTS
+}
+
+input: "479"
+output: "328"
+name: "Clip_8"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "328"
+input: "483"
+input: "484"
+output: "482"
+name: "Conv_9"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "482"
+input: "486"
+input: "487"
+output: "485"
+name: "Conv_10"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "485"
+output: "333"
+name: "Clip_11"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "333"
+input: "489"
+input: "490"
+output: "488"
+name: "Conv_12"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 144
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "488"
+output: "336"
+name: "Clip_13"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "336"
+input: "492"
+input: "493"
+output: "491"
+name: "Conv_14"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "482"
+input: "491"
+output: "339"
+name: "Add_15"
+op_type: "Add"
+
+input: "339"
+input: "495"
+input: "496"
+output: "494"
+name: "Conv_16"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "494"
+output: "342"
+name: "Clip_17"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "342"
+input: "498"
+input: "499"
+output: "497"
+name: "Conv_18"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 144
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 2
+  ints: 2
+  type: INTS
+}
+
+input: "497"
+output: "345"
+name: "Clip_19"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "345"
+input: "501"
+input: "502"
+output: "500"
+name: "Conv_20"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "500"
+input: "504"
+input: "505"
+output: "503"
+name: "Conv_21"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "503"
+output: "350"
+name: "Clip_22"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "350"
+input: "507"
+input: "508"
+output: "506"
+name: "Conv_23"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 192
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "506"
+output: "353"
+name: "Clip_24"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "353"
+input: "510"
+input: "511"
+output: "509"
+name: "Conv_25"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "500"
+input: "509"
+output: "356"
+name: "Add_26"
+op_type: "Add"
+
+input: "356"
+input: "513"
+input: "514"
+output: "512"
+name: "Conv_27"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "512"
+output: "359"
+name: "Clip_28"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "359"
+input: "516"
+input: "517"
+output: "515"
+name: "Conv_29"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 192
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "515"
+output: "362"
+name: "Clip_30"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "362"
+input: "519"
+input: "520"
+output: "518"
+name: "Conv_31"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "356"
+input: "518"
+output: "365"
+name: "Add_32"
+op_type: "Add"
+
+input: "365"
+input: "522"
+input: "523"
+output: "521"
+name: "Conv_33"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "521"
+output: "368"
+name: "Clip_34"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "368"
+input: "525"
+input: "526"
+output: "524"
+name: "Conv_35"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 192
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 2
+  ints: 2
+  type: INTS
+}
+
+input: "524"
+output: "371"
+name: "Clip_36"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "371"
+input: "528"
+input: "529"
+output: "527"
+name: "Conv_37"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "527"
+input: "531"
+input: "532"
+output: "530"
+name: "Conv_38"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "530"
+output: "376"
+name: "Clip_39"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "376"
+input: "534"
+input: "535"
+output: "533"
+name: "Conv_40"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 384
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "533"
+output: "379"
+name: "Clip_41"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "379"
+input: "537"
+input: "538"
+output: "536"
+name: "Conv_42"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "527"
+input: "536"
+output: "382"
+name: "Add_43"
+op_type: "Add"
+
+input: "382"
+input: "540"
+input: "541"
+output: "539"
+name: "Conv_44"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "539"
+output: "385"
+name: "Clip_45"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "385"
+input: "543"
+input: "544"
+output: "542"
+name: "Conv_46"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 384
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "542"
+output: "388"
+name: "Clip_47"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "388"
+input: "546"
+input: "547"
+output: "545"
+name: "Conv_48"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "382"
+input: "545"
+output: "391"
+name: "Add_49"
+op_type: "Add"
+
+input: "391"
+input: "549"
+input: "550"
+output: "548"
+name: "Conv_50"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "548"
+output: "394"
+name: "Clip_51"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "394"
+input: "552"
+input: "553"
+output: "551"
+name: "Conv_52"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 384
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "551"
+output: "397"
+name: "Clip_53"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "397"
+input: "555"
+input: "556"
+output: "554"
+name: "Conv_54"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "391"
+input: "554"
+output: "400"
+name: "Add_55"
+op_type: "Add"
+
+input: "400"
+input: "558"
+input: "559"
+output: "557"
+name: "Conv_56"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "557"
+output: "403"
+name: "Clip_57"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "403"
+input: "561"
+input: "562"
+output: "560"
+name: "Conv_58"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 384
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "560"
+output: "406"
+name: "Clip_59"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "406"
+input: "564"
+input: "565"
+output: "563"
+name: "Conv_60"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "563"
+input: "567"
+input: "568"
+output: "566"
+name: "Conv_61"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "566"
+output: "411"
+name: "Clip_62"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "411"
+input: "570"
+input: "571"
+output: "569"
+name: "Conv_63"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 576
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "569"
+output: "414"
+name: "Clip_64"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "414"
+input: "573"
+input: "574"
+output: "572"
+name: "Conv_65"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "563"
+input: "572"
+output: "417"
+name: "Add_66"
+op_type: "Add"
+
+input: "417"
+input: "576"
+input: "577"
+output: "575"
+name: "Conv_67"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "575"
+output: "420"
+name: "Clip_68"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "420"
+input: "579"
+input: "580"
+output: "578"
+name: "Conv_69"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 576
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "578"
+output: "423"
+name: "Clip_70"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "423"
+input: "582"
+input: "583"
+output: "581"
+name: "Conv_71"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "417"
+input: "581"
+output: "426"
+name: "Add_72"
+op_type: "Add"
+
+input: "426"
+input: "585"
+input: "586"
+output: "584"
+name: "Conv_73"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "584"
+output: "429"
+name: "Clip_74"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "429"
+input: "588"
+input: "589"
+output: "587"
+name: "Conv_75"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 576
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 2
+  ints: 2
+  type: INTS
+}
+
+input: "587"
+output: "432"
+name: "Clip_76"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "432"
+input: "591"
+input: "592"
+output: "590"
+name: "Conv_77"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "590"
+input: "594"
+input: "595"
+output: "593"
+name: "Conv_78"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "593"
+output: "437"
+name: "Clip_79"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "437"
+input: "597"
+input: "598"
+output: "596"
+name: "Conv_80"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 960
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "596"
+output: "440"
+name: "Clip_81"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "440"
+input: "600"
+input: "601"
+output: "599"
+name: "Conv_82"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "590"
+input: "599"
+output: "443"
+name: "Add_83"
+op_type: "Add"
+
+input: "443"
+input: "603"
+input: "604"
+output: "602"
+name: "Conv_84"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "602"
+output: "446"
+name: "Clip_85"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "446"
+input: "606"
+input: "607"
+output: "605"
+name: "Conv_86"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 960
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "605"
+output: "449"
+name: "Clip_87"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "449"
+input: "609"
+input: "610"
+output: "608"
+name: "Conv_88"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "443"
+input: "608"
+output: "452"
+name: "Add_89"
+op_type: "Add"
+
+input: "452"
+input: "612"
+input: "613"
+output: "611"
+name: "Conv_90"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "611"
+output: "455"
+name: "Clip_91"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "455"
+input: "615"
+input: "616"
+output: "614"
+name: "Conv_92"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 960
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 3
+  ints: 3
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 1
+  ints: 1
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "614"
+output: "458"
+name: "Clip_93"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "458"
+input: "618"
+input: "619"
+output: "617"
+name: "Conv_94"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "617"
+input: "621"
+input: "622"
+output: "620"
+name: "Conv_95"
+op_type: "Conv"
+attribute {
+  name: "dilations"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "group"
+  i: 1
+  type: INT
+}
+attribute {
+  name: "kernel_shape"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+attribute {
+  name: "pads"
+  ints: 0
+  ints: 0
+  ints: 0
+  ints: 0
+  type: INTS
+}
+attribute {
+  name: "strides"
+  ints: 1
+  ints: 1
+  type: INTS
+}
+
+input: "620"
+output: "463"
+name: "Clip_96"
+op_type: "Clip"
+attribute {
+  name: "max"
+  f: 6.0
+  type: FLOAT
+}
+attribute {
+  name: "min"
+  f: 0.0
+  type: FLOAT
+}
+
+input: "463"
+output: "464"
+name: "GlobalAveragePool_97"
+op_type: "GlobalAveragePool"
+
+input: "464"
+output: "465"
+name: "Flatten_98"
+op_type: "Flatten"
+attribute {
+  name: "axis"
+  i: 1
+  type: INT
+}
+
+input: "465"
+input: "classifier.1.weight"
+input: "classifier.1.bias"
+output: "output1"
+name: "Gemm_99"
+op_type: "Gemm"
+attribute {
+  name: "alpha"
+  f: 1.0
+  type: FLOAT
+}
+attribute {
+  name: "beta"
+  f: 1.0
+  type: FLOAT
+}
+attribute {
+  name: "transB"
+  i: 1
+  type: INT
+}
+
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: Clip
+Unsupported OP: GlobalAveragePool
+Unsupported OP: Flatten

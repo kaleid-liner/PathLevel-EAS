@@ -14,17 +14,17 @@ def get_block_by_name(name):
 		return ResidualBlock
 	else:
 		raise NotImplementedError
-	
+
 
 class ResidualBlock(nn.Module):
 	def __init__(self, cell, in_bottle, out_bottle, shortcut, final_bn=False):
 		super(ResidualBlock, self).__init__()
-		
+
 		self.cell = cell
 		self.in_bottle = in_bottle
 		self.out_bottle = out_bottle
 		self.shortcut = shortcut
-		
+
 		if final_bn:
 			if self.out_bottle is None:
 				out_channels = self.cell.out_channels
@@ -33,23 +33,23 @@ class ResidualBlock(nn.Module):
 			self.final_bn = nn.BatchNorm2d(out_channels)
 		else:
 			self.final_bn = None
-	
+
 	def forward(self, x):
 		_x = self.shortcut(x)
-		
+
 		if self.in_bottle is not None:
 			x = self.in_bottle(x)
-		
+
 		x = self.cell(x)
-		
+
 		if self.out_bottle is not None:
 			x = self.out_bottle(x)
 		if self.final_bn:
 			x = self.final_bn(x)
-		
+
 		residual_channel = x.size()[1]
 		shortcut_channel = _x.size()[1]
-		
+
 		batch_size = x.size()[0]
 		featuremap = x.size()[2:4]
 		if residual_channel != shortcut_channel:
@@ -59,8 +59,8 @@ class ResidualBlock(nn.Module):
 			padding = torch.autograd.Variable(padding)
 			_x = torch.cat((_x, padding), 1)
 		
-		return _x + x
-	
+		return x
+
 	def get_config(self):
 		return {
 			'name': ResidualBlock.__name__,
@@ -70,28 +70,28 @@ class ResidualBlock(nn.Module):
 			'final_bn': False if self.final_bn is None else True,
 			'cell': self.cell.get_config(),
 		}
-	
+
 	@staticmethod
 	def set_from_config(config):
 		if config.get('in_bottle'):
 			in_bottle = set_layer_from_config(config.get('in_bottle'))
 		else:
 			in_bottle = None
-		
+
 		if config.get('out_bottle'):
 			out_bottle = set_layer_from_config(config.get('out_bottle'))
 		else:
 			out_bottle = None
-			
+
 		shortcut = set_layer_from_config(config.get('shortcut'))
 		cell = TreeNode.set_from_config(config.get('cell'))
 		final_bn = config.get('final_bn', False)
-		
+
 		return ResidualBlock(cell, in_bottle, out_bottle, shortcut, final_bn)
-	
+
 	def virtual_forward(self, x, init=False):
 		_x = self.shortcut.virtual_forward(x, init)
-		
+
 		if self.in_bottle is not None:
 			x = self.in_bottle.virtual_forward(x, init)
 		x = self.cell.virtual_forward(x, init)
@@ -99,10 +99,10 @@ class ResidualBlock(nn.Module):
 			x = self.out_bottle.virtual_forward(x, init)
 		if self.final_bn:
 			x = self.final_bn(x)
-		
+
 		residual_channel = x.size()[1]
 		shortcut_channel = _x.size()[1]
-		
+
 		batch_size = x.size()[0]
 		featuremap = x.size()[2:4]
 		if residual_channel != shortcut_channel:
@@ -111,9 +111,9 @@ class ResidualBlock(nn.Module):
 				padding = padding.cuda()
 			padding = torch.autograd.Variable(padding)
 			_x = torch.cat((_x, padding), 1)
-		
+
 		return _x + x
-	
+
 	def claim_ready(self, nBatch, noise=None):
 		if self.in_bottle:
 			self.in_bottle.claim_ready(nBatch, noise)
@@ -121,22 +121,22 @@ class ResidualBlock(nn.Module):
 		if self.out_bottle:
 			self.out_bottle.claim_ready(nBatch, noise)
 		self.shortcut.claim_ready(nBatch, noise)
-	
-	
+
+
 class PyramidNet(BasicBlockWiseConvNet):
 	def __init__(self, blocks, classifier, ops_order, tree_node_config, groups_3x3):
 		super(PyramidNet, self).__init__(blocks, classifier)
-		
+
 		self.ops_order = ops_order
 		self.tree_node_config = tree_node_config
 		self.groups_3x3 = groups_3x3
-	
+
 	@property
 	def building_block(self):
 		for block in self.blocks:
 			if isinstance(block, ResidualBlock):
 				return block.cell
-	
+
 	def get_config(self):
 		return {
 			'name': PyramidNet.__name__,
@@ -148,7 +148,7 @@ class PyramidNet(BasicBlockWiseConvNet):
 			],
 			'classifier': self.classifier.get_config(),
 		}
-	
+
 	@staticmethod
 	def set_from_config(config):
 		blocks = []
@@ -170,24 +170,24 @@ class PyramidNet(BasicBlockWiseConvNet):
 							to_updates.put(new_config)
 			block = block.set_from_config(block_config)
 			blocks.append(block)
-		
+
 		classifier_config = config.get('classifier')
 		classifier = set_layer_from_config(classifier_config)
-		
+
 		ops_order = config.get('ops_order')
 		groups_3x3 = config.get('groups_3x3', 1)
 
 		return PyramidNet(blocks, classifier, ops_order, config.get('tree_node_config'), groups_3x3)
-	
+
 	@staticmethod
 	def set_standard_net(data_shape, n_classes, start_planes, alpha, block_per_group, total_groups, downsample_type,
 	                     bottleneck=4, ops_order='bn_act_weight', dropout_rate=0,
 	                     final_bn=True, no_first_relu=True, use_depth_sep_conv=False, groups_3x3=1,
 	                     path_drop_rate=0, use_zero_drop=True, drop_only_add=False):
 		image_channel, image_size = data_shape[0:2]
-		
+
 		addrate = alpha / (block_per_group * total_groups)  # add pyramid_net
-		
+
 		# initial conv
 		features_dim = start_planes
 		if ops_order == 'weight_bn_act':
@@ -208,7 +208,7 @@ class PyramidNet(BasicBlockWiseConvNet):
 		else:
 			transition2blocks = TransitionBlock([init_conv_layer])
 		blocks = [transition2blocks]
-		
+
 		planes = start_planes
 		for group_idx in range(total_groups):
 			for block_idx in range(block_per_group):
@@ -231,7 +231,7 @@ class PyramidNet(BasicBlockWiseConvNet):
 						                        use_bn=False, act_func=None, dropout_rate=0, ops_order=ops_order)
 					else:
 						raise NotImplementedError
-				
+
 				out_plane = int(round(planes))
 				if out_plane % groups_3x3 != 0:
 					out_plane -= out_plane % groups_3x3  # may change to +=
@@ -241,7 +241,7 @@ class PyramidNet(BasicBlockWiseConvNet):
 				else:
 					in_bottle = ConvLayer(features_dim, out_plane, kernel_size=1, use_bn=True, act_func='relu',
 					                      dropout_rate=dropout_rate, ops_order=ops_order)
-				
+
 				if use_depth_sep_conv:
 					cell_edge = DepthConvLayer(out_plane, out_plane, kernel_size=3, stride=stride, use_bn=True,
 					                           act_func='relu', dropout_rate=dropout_rate, ops_order=ops_order)
@@ -252,7 +252,7 @@ class PyramidNet(BasicBlockWiseConvNet):
 				                out_channels=out_plane, split_type=None, merge_type=None,
 				                path_drop_rate=path_drop_rate, use_zero_drop=use_zero_drop,
 				                drop_only_add=drop_only_add)
-				
+
 				out_bottle = ConvLayer(out_plane, out_plane * bottleneck, kernel_size=1, use_bn=True,
 				                       act_func='relu', dropout_rate=dropout_rate, ops_order=ops_order)
 				residual_block = ResidualBlock(cell, in_bottle, out_bottle, shortcut, final_bn=final_bn)
@@ -271,7 +271,7 @@ class PyramidNet(BasicBlockWiseConvNet):
 			raise NotImplementedError
 		transition2classes = TransitionBlock([global_avg_pool])
 		blocks.append(transition2classes)
-		
+
 		classifier = LinearLayer(features_dim, n_classes, bias=True)
 		tree_node_config = {
 			'use_avg': True,
@@ -280,6 +280,6 @@ class PyramidNet(BasicBlockWiseConvNet):
 			'use_zero_drop': use_zero_drop,
 			'drop_only_add': drop_only_add,
 		}
-		
+
 		return PyramidNet(blocks, classifier, ops_order, tree_node_config, groups_3x3)
 

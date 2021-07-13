@@ -19,6 +19,8 @@ from models.pyramidnet import PyramidNet
 from models.chain_net import ChainNet
 from models.utils import *
 
+from nni.algorithms.compression.pytorch.pruning import AGPPruner, LevelPruner, L1FilterPruner
+
 
 def get_model_by_name(name):
     if name == DenseNet.__name__:
@@ -44,17 +46,17 @@ class RunConfig:
         self.opt_type = opt_type
         self.opt_param = opt_param
         self.weight_decay = weight_decay
-        
+
         self.init_lr = init_lr
         self.lr_schedule_type = lr_schedule_type
         self.lr_schedule_param = lr_schedule_param
-        
+
         self.model_init = model_init
         self.init_div_groups = init_div_groups
-        
+
         self.validation_frequency = validation_frequency
         self.renew_logs = renew_logs
-        
+
         self.dataset = dataset
         self.use_torch_data_loader = use_torch_data_loader
         self.valid_size = valid_size
@@ -62,27 +64,27 @@ class RunConfig:
         self.flip_first = flip_first
         self.drop_last = drop_last
         self.include_extra = include_extra
-        
+
         self.cutout = cutout
         self.cutout_n_holes = cutout_n_holes
         self.cutout_size = cutout_size
-    
+
     def get_config(self):
         return self.__dict__.copy()
-    
+
     def update(self, attributes):
         self.__dict__.update(attributes)
-    
+
     def copy(self):
         return RunConfig(**self.get_config())
-    
+
     @staticmethod
     def get_default_run_config(dataset='C10+'):
         default_run_config = RunConfig()
         default_run_config.opt_param = {'momentum': 0.9, 'nesterov': True}
         default_run_config.dataset = dataset
         return default_run_config.get_config()
-    
+
     def _learning_rate(self, epoch, batch=0, nBatch=None):
         if self.lr_schedule_type == 'cosine':
             T_total = self.n_epochs * nBatch
@@ -97,13 +99,13 @@ class RunConfig:
                 if epoch >= _reduce_epoch * self.n_epochs:
                     lr /= _reduce_factor
         return lr
-    
+
     def build_data_provider(self):
         if self.use_torch_data_loader:
             if self.dataset == 'C10+':
                 mean = [x / 255.0 for x in [125.3, 123.0, 113.9]]
                 stdv = [x / 255.0 for x in [63.0, 62.1, 66.7]]
-                
+
                 train_transforms = transforms.Compose([
                     transforms.RandomCrop(32, padding=4),
                     transforms.RandomHorizontalFlip(),
@@ -112,7 +114,7 @@ class RunConfig:
                 ])
                 if self.cutout:
                     train_transforms.transforms.append(Cutout(n_holes=self.cutout_n_holes, length=self.cutout_size))
-                    
+
                 test_transforms = transforms.Compose([
                     transforms.ToTensor(),
                     transforms.Normalize(mean=mean, std=stdv),
@@ -123,13 +125,13 @@ class RunConfig:
                 if self.valid_size is not None:
                     valid_set = datasets.CIFAR10(data_path, train=True, transform=test_transforms, download=True)
                     np.random.seed(DataProvider.SEED)  # set random seed before sampling validation set
-                    
+
                     indices = np.random.permutation(len(train_set))
                     train_indices = indices[self.valid_size:]
                     train_sampler = torch.utils.data.sampler.SubsetRandomSampler(train_indices)
                     valid_indices = indices[:self.valid_size]
                     valid_sampler = torch.utils.data.sampler.SubsetRandomSampler(valid_indices)
-                    
+
                     train_loader = torch.utils.data.DataLoader(train_set, batch_size=self.batch_size,
                                                                sampler=train_sampler,
                                                                pin_memory=cuda_available(), num_workers=1,
@@ -143,7 +145,7 @@ class RunConfig:
                                                                pin_memory=cuda_available(), num_workers=1,
                                                                drop_last=self.drop_last)
                     valid_loader = None
-                
+
                 test_loader = torch.utils.data.DataLoader(test_set, batch_size=100, shuffle=False,
                                                           pin_memory=cuda_available(), num_workers=1,
                                                           drop_last=False)
@@ -156,12 +158,12 @@ class RunConfig:
             train_loader = data_provider.train
             valid_loader = data_provider.validation
             test_loader = data_provider.test
-            
+
             train_loader.batch_size = self.batch_size
             valid_loader.batch_size = self.batch_size
             test_loader.batch_size = 100
         return train_loader, valid_loader, test_loader
-    
+
     def build_optimizer(self, params):
         if self.opt_type == 'sgd':
             opt_param = {} if self.opt_param is None else self.opt_param
@@ -171,7 +173,7 @@ class RunConfig:
         else:
             raise NotImplementedError
         return optimizer
-    
+
     def adjust_learning_rate(self, optimizer, epoch, batch=0, nBatch=None):
         """adjust learning of a given optimizer and return the new learning rate"""
         new_lr = self._learning_rate(epoch, batch, nBatch)
@@ -181,29 +183,29 @@ class RunConfig:
 
 
 class RunManger:
-    def __init__(self, path, model, run_config: RunConfig, out_log=True, resume=True):
+    def __init__(self, path, model, run_config: RunConfig, out_log=True, resume=True, init=None, prune=False):
         self.path = path
         self.model = model
         self.run_config = run_config
         self.out_log = out_log
         self.resume = resume
-        
+
         self._logs_path, self._save_path = None, None
         self._best_acc = 0
         self._start_epoch = 0
-        
+
         total_params = self.count_parameters(self.model)
         if self.out_log:
             print('Total training params: %.2fM' % (total_params / 1e6))
         with open('%s/net_info.txt' % self.logs_path, 'a') as fout:
             fout.write(json.dumps({'param': '%.2fM' % (total_params / 1e6)}) + '\n')
-        
+
         # prepare data loader
         self.train_loader, self.valid_loader, self.test_loader = self.run_config.build_data_provider()
-        
+
         # initialize model (default)
         self.model.init_model(run_config.model_init, run_config.init_div_groups)
-        
+
         # prepare model (move to GPU if available)
         if cuda_available():
             if torch.cuda.device_count() > 1:
@@ -213,23 +215,56 @@ class RunManger:
             cudnn.benchmark = True
         if self.out_log:
             print(self.model)
-        
+
         # prepare optimizer and criterion
         if cuda_available():
             self.criterion = nn.CrossEntropyLoss().cuda()
         else:
             self.criterion = nn.CrossEntropyLoss()
         self.optimizer = self.run_config.build_optimizer(self.model.parameters())
-        
+
         # load model
         if self.resume:
             self.load_model()
-    
+        elif init is not None:
+            model_state_dict = self.model.state_dict()
+            model_key = list(model_state_dict.keys())[0]
+            init_key = list(init['state_dict'].keys())[0]
+            if model_key.startswith('module.'):
+                if not init_key.startswith('module.'):
+                    new_state_dict = {}
+                    for key in init['state_dict']:
+                        new_state_dict['module.' + key] = init['state_dict'][key]
+                    init['state_dict'] = new_state_dict
+            else:
+                if init_key.startswith('module.'):
+                    new_state_dict = {}
+                    for key in init['state_dict']:
+                        new_key = '.'.join(key.split('.')[1:])
+                        new_state_dict[new_key] = init['state_dict'][key]
+                    init['state_dict'] = new_state_dict
+            model_state_dict.update(init['state_dict'])
+            self.model.load_state_dict(model_state_dict)
+
+        if prune:
+            config_list = [{
+                'initial_sparsity': .0,
+                'final_sparsity': 0.5,
+                'start_epoch': 0,
+                'end_epoch': 2,
+                'frequency': 1,
+                'op_types': ['default']
+            }]
+            config_list = [{ 'sparsity': 0.8, 'op_types': ['Conv2d'] }]
+            # self.pruner = AGPPruner(model, config_list, self.optimizer, pruning_algorithm='level')
+            self.pruner = L1FilterPruner(model, config_list)
+            self.model = self.pruner.compress()
+
     @staticmethod
     def count_parameters(model):
         total_params = sum([p.data.nelement() for p in model.parameters()])
         return total_params
-        
+
     @property
     def save_path(self):
         if self._save_path is None:
@@ -237,7 +272,7 @@ class RunManger:
             os.makedirs(save_path, exist_ok=True)
             self._save_path = save_path
         return self._save_path
-    
+
     @property
     def logs_path(self):
         if self._logs_path is None:
@@ -247,22 +282,26 @@ class RunManger:
             os.makedirs(logs_path, exist_ok=True)
             self._logs_path = logs_path
         return self._logs_path
-    
+
     def save_model(self, checkpoint=None, is_best=False):
         if checkpoint is None:
             checkpoint = {'state_dict': self.model.state_dict()}
-            
+
         checkpoint['dataset'] = self.run_config.dataset
         latest_fname = os.path.join(self.save_path, 'latest.txt')
         model_path = os.path.join(self.save_path, 'checkpoint.pth.tar')
         with open(latest_fname, 'w') as fout:
             fout.write(model_path + '\n')
         torch.save(checkpoint, model_path)
-        
+
+        pruned_model_path = os.path.join(self.save_path, 'pruned_model_agp.pth')
+        self.mask_path = os.path.join(self.save_path, 'pruned_mask_agp.pth')
+        self.pruner.export_model(model_path=pruned_model_path, mask_path=self.mask_path)
+
         if is_best:
             best_path = os.path.join(self.save_path, 'model_best.pth.tar')
             shutil.copyfile(model_path, best_path)
-    
+
     def load_model(self, model_fname=None):
         latest_fname = os.path.join(self.save_path, 'latest.txt')
         if model_fname is None and os.path.exists(latest_fname):
@@ -298,7 +337,7 @@ class RunManger:
         except Exception:
             if self.out_log:
                 print('fail to load checkpoint from %s' % self.save_path)
-    
+
     def write_log(self, log_str, prefix, should_print=True):
         """prefix: valid, train, test"""
         if prefix in ['valid', 'test']:
@@ -313,48 +352,48 @@ class RunManger:
                 fout.flush()
         if should_print:
             print(log_str)
-    
+
     def train(self):
         data_loader = self.train_loader
-        
+
         for epoch in range(self._start_epoch, self.run_config.n_epochs):
             print('\n', '-' * 30, 'Train epoch: %d' % epoch, '-' * 30, '\n')
-            
+
             batch_time = AverageMeter()
             losses = AverageMeter()
             top1 = AverageMeter()
-            
+
             # switch to train mode
             self.model.train()
-            
+
             end = time.time()
             for i, (_input, target) in enumerate(data_loader):
                 lr = self.run_config.adjust_learning_rate(self.optimizer, epoch, batch=i, nBatch=len(data_loader))
-                
+
                 if cuda_available():
                     target = target.cuda(non_blocking=True)
                     _input = _input.cuda()
                 input_var = torch.autograd.Variable(_input)
                 target_var = torch.autograd.Variable(target)
-                
+
                 # compute output
                 output = self.model(input_var)
                 loss = self.criterion(output, target_var)
-                
+
                 # measure accuracy and record loss
                 acc1 = accuracy(output.data, target, topk=(1,))
-                losses.update(loss.data[0], _input.size(0))
+                losses.update(loss.item(), _input.size(0))
                 top1.update(acc1[0][0], _input.size(0))
-                
+
                 # compute gradient and do SGD step
                 self.optimizer.zero_grad()
                 loss.backward()
                 self.optimizer.step()
-                
+
                 # measure elapsed time
                 batch_time.update(time.time() - end)
                 end = time.time()
-                
+
                 if i % 70 == 0 or i + 1 == len(data_loader):
                     batch_log = 'Train [{0}][{1}/{2}]\t' \
                                 'Time {batch_time.val:.3f} ({batch_time.avg:.3f})\t' \
@@ -362,13 +401,13 @@ class RunManger:
                                 'top 1-acc {top1.val:.3f} ({top1.avg:.3f})\tlr {lr:.5f}'.\
                         format(epoch, i, len(data_loader), batch_time=batch_time, losses=losses, top1=top1, lr=lr)
                     self.write_log(batch_log, 'train')
-                    
+
             time_per_epoch = batch_time.sum
             seconds_left = int((self.run_config.n_epochs - epoch - 1) * time_per_epoch)
             print('Time per epoch: %s, Est. complete in: %s' % (
                 str(timedelta(seconds=time_per_epoch)),
                 str(timedelta(seconds=seconds_left))))
-            
+
             if (epoch + 1) % self.run_config.validation_frequency == 0:
                 val_loss, val_acc = self.validate(use_test_loader=False)
                 is_best = val_acc > self._best_acc
@@ -384,59 +423,62 @@ class RunManger:
                 'optimizer': self.optimizer.state_dict(),
                 'state_dict': self.model.state_dict(),
             }, is_best)
-    
+
+            if self.pruner:
+                self.pruner.update_epoch(epoch)
+
     def validate(self, use_test_loader=True):
         if use_test_loader:
             data_loader = self.test_loader
         else:
             data_loader = self.valid_loader
         self.model.eval()
-        
+
         losses = AverageMeter()
         top1 = AverageMeter()
-        
+
         for i, (_input, target) in enumerate(data_loader):
             if cuda_available():
                 target = target.cuda(non_blocking=True)
                 _input = _input.cuda()
             input_var = torch.autograd.Variable(_input)
             target_var = torch.autograd.Variable(target)
-    
+
             # compute output
             with torch.no_grad():
                 output = self.model(input_var)
             loss = self.criterion(output, target_var)
-    
+
             # measure accuracy and record loss
             acc1 = accuracy(output.data, target, topk=(1,))
-            losses.update(loss.data[0], _input.size(0))
+            losses.update(loss.item(), _input.size(0))
             top1.update(acc1[0][0], _input.size(0))
         return losses.avg, top1.avg
-    
+
     def pure_train(self):
         data_loader = self.train_loader
-        
+
         for epoch in range(self._start_epoch, self.run_config.n_epochs):
             # switch to train mode
             self.model.train()
             for i, (_input, target) in enumerate(data_loader):
                 _ = self.run_config.adjust_learning_rate(self.optimizer, epoch, batch=i, nBatch=len(data_loader))
-                
+
                 if cuda_available():
                     target = target.cuda(non_blocking=True)
                     _input = _input.cuda()
                 input_var = torch.autograd.Variable(_input)
                 target_var = torch.autograd.Variable(target)
-                
+
                 # compute output
                 output = self.model(input_var)
                 loss = self.criterion(output, target_var)
-                
+
                 # compute gradient and do SGD step
                 self.optimizer.zero_grad()
                 loss.backward()
                 self.optimizer.step()
-        
+
     def save_config(self, print_info=True):
         """ dump run_config and net_config to the model_folder """
         os.makedirs(self.path, exist_ok=True)
@@ -447,8 +489,7 @@ class RunManger:
             model_config = self.model.get_config()
         json.dump(model_config, open(net_save_path, 'w'), indent=4)
         if print_info: print('Network configs dump to %s' % self.save_path)
-        
+
         run_save_path = os.path.join(self.path, 'run.config')
         json.dump(self.run_config.get_config(), open(run_save_path, 'w'), indent=4)
         if print_info: print('Run configs dump to %s' % run_save_path)
-

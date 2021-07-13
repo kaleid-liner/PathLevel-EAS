@@ -1,0 +1,2203 @@
+[
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                224,
+                224,
+                3
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                112,
+                112,
+                32
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            2,
+            2
+        ],
+        "inputh": 224,
+        "inputw": 224,
+        "cin": 3,
+        "cout": 32
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                112,
+                112,
+                32
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                112,
+                112,
+                32
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 112,
+        "inputw": 112,
+        "cin": 32,
+        "cout": 32
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                112,
+                112,
+                32
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                112,
+                112,
+                16
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 112,
+        "inputw": 112,
+        "cin": 32,
+        "cout": 16
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                112,
+                112,
+                16
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                112,
+                112,
+                96
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 112,
+        "inputw": 112,
+        "cin": 16,
+        "cout": 96
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                112,
+                112,
+                96
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                56,
+                56,
+                96
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            2,
+            2
+        ],
+        "inputh": 112,
+        "inputw": 112,
+        "cin": 96,
+        "cout": 96
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                56,
+                56,
+                96
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                56,
+                56,
+                24
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 56,
+        "inputw": 56,
+        "cin": 96,
+        "cout": 24
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                56,
+                56,
+                24
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                56,
+                56,
+                144
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 56,
+        "inputw": 56,
+        "cin": 24,
+        "cout": 144
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                56,
+                56,
+                144
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                56,
+                56,
+                144
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 56,
+        "inputw": 56,
+        "cin": 144,
+        "cout": 144
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                56,
+                56,
+                144
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                56,
+                56,
+                24
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 56,
+        "inputw": 56,
+        "cin": 144,
+        "cout": 24
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                56,
+                56,
+                24
+            ],
+            [
+                10,
+                56,
+                56,
+                24
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                56,
+                56,
+                24
+            ]
+        ],
+        "cout": 24
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                56,
+                56,
+                24
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                56,
+                56,
+                144
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 56,
+        "inputw": 56,
+        "cin": 24,
+        "cout": 144
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                56,
+                56,
+                144
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                144
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            2,
+            2
+        ],
+        "inputh": 56,
+        "inputw": 56,
+        "cin": 144,
+        "cout": 144
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                144
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 144,
+        "cout": 32
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 32,
+        "cout": 192
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 192,
+        "cout": 192
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 192,
+        "cout": 32
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ],
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "cout": 32
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 32,
+        "cout": 192
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 192,
+        "cout": 192
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 192,
+        "cout": 32
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ],
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "cout": 32
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                32
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 32,
+        "cout": 192
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                28,
+                28,
+                192
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                192
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            2,
+            2
+        ],
+        "inputh": 28,
+        "inputw": 28,
+        "cin": 192,
+        "cout": 192
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                192
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 192,
+        "cout": 64
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 64,
+        "cout": 384
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 384,
+        "cout": 384
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 384,
+        "cout": 64
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ],
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "cout": 64
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 64,
+        "cout": 384
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 384,
+        "cout": 384
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 384,
+        "cout": 64
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ],
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "cout": 64
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 64,
+        "cout": 384
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 384,
+        "cout": 384
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 384,
+        "cout": 64
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ],
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "cout": 64
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                64
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 64,
+        "cout": 384
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 384,
+        "cout": 384
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                384
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 384,
+        "cout": 96
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 96,
+        "cout": 576
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 576,
+        "cout": 576
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 576,
+        "cout": 96
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ],
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "cout": 96
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 96,
+        "cout": 576
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 576,
+        "cout": 576
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 576,
+        "cout": 96
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ],
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "cout": 96
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                96
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 96,
+        "cout": 576
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                14,
+                14,
+                576
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                576
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            2,
+            2
+        ],
+        "inputh": 14,
+        "inputw": 14,
+        "cin": 576,
+        "cout": 576
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                576
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 576,
+        "cout": 160
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 160,
+        "cout": 960
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 960,
+        "cout": 960
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 960,
+        "cout": 160
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ],
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "cout": 160
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 160,
+        "cout": 960
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 960,
+        "cout": 960
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 960,
+        "cout": 160
+    },
+    {
+        "op": "add",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ],
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "cout": 160
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                160
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 160,
+        "cout": 960
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "ks": [
+            3,
+            3
+        ],
+        "padding": [
+            1,
+            1,
+            1,
+            1
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 960,
+        "cout": 960
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                960
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                320
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 960,
+        "cout": 320
+    },
+    {
+        "op": "conv",
+        "input_tensors": [
+            [
+                10,
+                7,
+                7,
+                320
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                7,
+                7,
+                1280
+            ]
+        ],
+        "ks": [
+            1,
+            1
+        ],
+        "padding": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "strides": [
+            1,
+            1
+        ],
+        "inputh": 7,
+        "inputw": 7,
+        "cin": 320,
+        "cout": 1280
+    },
+    {
+        "op": "fc",
+        "input_tensors": [
+            [
+                10,
+                1280
+            ]
+        ],
+        "output_tensors": [
+            [
+                10,
+                1000
+            ]
+        ],
+        "cin": 1280,
+        "cout": 1000
+    }
+]

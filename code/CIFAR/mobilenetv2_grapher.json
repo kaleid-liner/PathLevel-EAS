@@ -1,0 +1,2712 @@
+{
+    "Conv_0": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    2,
+                    2
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    3,
+                    32
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    224,
+                    224,
+                    3
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    112,
+                    112,
+                    32
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_1"
+        ],
+        "inbounds": []
+    },
+    "Conv_2": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    32,
+                    32
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    112,
+                    112,
+                    32
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    112,
+                    112,
+                    32
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_3"
+        ],
+        "inbounds": [
+            "Clip_1"
+        ]
+    },
+    "Conv_4": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    32,
+                    16
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    112,
+                    112,
+                    32
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    112,
+                    112,
+                    16
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Conv_5"
+        ],
+        "inbounds": [
+            "Clip_3"
+        ]
+    },
+    "Conv_5": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    16,
+                    96
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    112,
+                    112,
+                    16
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    112,
+                    112,
+                    96
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_6"
+        ],
+        "inbounds": [
+            "Conv_4"
+        ]
+    },
+    "Conv_7": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    2,
+                    2
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    96,
+                    96
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    112,
+                    112,
+                    96
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    96
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_8"
+        ],
+        "inbounds": [
+            "Clip_6"
+        ]
+    },
+    "Conv_9": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    96,
+                    24
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    96
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    24
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Conv_10"
+        ],
+        "inbounds": [
+            "Clip_8"
+        ]
+    },
+    "Conv_10": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    24,
+                    144
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    24
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    144
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_11"
+        ],
+        "inbounds": [
+            "Conv_9"
+        ]
+    },
+    "Conv_12": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    144,
+                    144
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    144
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    144
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_13"
+        ],
+        "inbounds": [
+            "Clip_11"
+        ]
+    },
+    "Conv_14": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    144,
+                    24
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    144
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    24
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_15"
+        ],
+        "inbounds": [
+            "Clip_13"
+        ]
+    },
+    "Add_15": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    24
+                ],
+                [
+                    10,
+                    56,
+                    56,
+                    24
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    24
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_16"
+        ],
+        "inbounds": [
+            "Conv_9",
+            "Conv_14"
+        ]
+    },
+    "Conv_16": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    24,
+                    144
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    24
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    144
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_17"
+        ],
+        "inbounds": [
+            "Add_15"
+        ]
+    },
+    "Conv_18": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    2,
+                    2
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    144,
+                    144
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    56,
+                    56,
+                    144
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    144
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_19"
+        ],
+        "inbounds": [
+            "Clip_17"
+        ]
+    },
+    "Conv_20": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    144,
+                    32
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    144
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Conv_21"
+        ],
+        "inbounds": [
+            "Clip_19"
+        ]
+    },
+    "Conv_21": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    32,
+                    192
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_22"
+        ],
+        "inbounds": [
+            "Conv_20"
+        ]
+    },
+    "Conv_23": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    192,
+                    192
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_24"
+        ],
+        "inbounds": [
+            "Clip_22"
+        ]
+    },
+    "Conv_25": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    192,
+                    32
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_26"
+        ],
+        "inbounds": [
+            "Clip_24"
+        ]
+    },
+    "Add_26": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ],
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_27"
+        ],
+        "inbounds": [
+            "Conv_20",
+            "Conv_25"
+        ]
+    },
+    "Conv_27": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    32,
+                    192
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_28"
+        ],
+        "inbounds": [
+            "Add_26"
+        ]
+    },
+    "Conv_29": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    192,
+                    192
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_30"
+        ],
+        "inbounds": [
+            "Clip_28"
+        ]
+    },
+    "Conv_31": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    192,
+                    32
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_32"
+        ],
+        "inbounds": [
+            "Clip_30"
+        ]
+    },
+    "Add_32": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ],
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_33"
+        ],
+        "inbounds": [
+            "Add_26",
+            "Conv_31"
+        ]
+    },
+    "Conv_33": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    32,
+                    192
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    32
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_34"
+        ],
+        "inbounds": [
+            "Add_32"
+        ]
+    },
+    "Conv_35": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    2,
+                    2
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    192,
+                    192
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    28,
+                    28,
+                    192
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    192
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_36"
+        ],
+        "inbounds": [
+            "Clip_34"
+        ]
+    },
+    "Conv_37": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    192,
+                    64
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    192
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Conv_38"
+        ],
+        "inbounds": [
+            "Clip_36"
+        ]
+    },
+    "Conv_38": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    64,
+                    384
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_39"
+        ],
+        "inbounds": [
+            "Conv_37"
+        ]
+    },
+    "Conv_40": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    384,
+                    384
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_41"
+        ],
+        "inbounds": [
+            "Clip_39"
+        ]
+    },
+    "Conv_42": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    384,
+                    64
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_43"
+        ],
+        "inbounds": [
+            "Clip_41"
+        ]
+    },
+    "Add_43": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ],
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_44"
+        ],
+        "inbounds": [
+            "Conv_37",
+            "Conv_42"
+        ]
+    },
+    "Conv_44": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    64,
+                    384
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_45"
+        ],
+        "inbounds": [
+            "Add_43"
+        ]
+    },
+    "Conv_46": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    384,
+                    384
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_47"
+        ],
+        "inbounds": [
+            "Clip_45"
+        ]
+    },
+    "Conv_48": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    384,
+                    64
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_49"
+        ],
+        "inbounds": [
+            "Clip_47"
+        ]
+    },
+    "Add_49": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ],
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_50"
+        ],
+        "inbounds": [
+            "Add_43",
+            "Conv_48"
+        ]
+    },
+    "Conv_50": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    64,
+                    384
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_51"
+        ],
+        "inbounds": [
+            "Add_49"
+        ]
+    },
+    "Conv_52": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    384,
+                    384
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_53"
+        ],
+        "inbounds": [
+            "Clip_51"
+        ]
+    },
+    "Conv_54": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    384,
+                    64
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_55"
+        ],
+        "inbounds": [
+            "Clip_53"
+        ]
+    },
+    "Add_55": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ],
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_56"
+        ],
+        "inbounds": [
+            "Add_49",
+            "Conv_54"
+        ]
+    },
+    "Conv_56": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    64,
+                    384
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    64
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_57"
+        ],
+        "inbounds": [
+            "Add_55"
+        ]
+    },
+    "Conv_58": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    384,
+                    384
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_59"
+        ],
+        "inbounds": [
+            "Clip_57"
+        ]
+    },
+    "Conv_60": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    384,
+                    96
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    384
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Conv_61"
+        ],
+        "inbounds": [
+            "Clip_59"
+        ]
+    },
+    "Conv_61": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    96,
+                    576
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_62"
+        ],
+        "inbounds": [
+            "Conv_60"
+        ]
+    },
+    "Conv_63": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    576,
+                    576
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_64"
+        ],
+        "inbounds": [
+            "Clip_62"
+        ]
+    },
+    "Conv_65": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    576,
+                    96
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_66"
+        ],
+        "inbounds": [
+            "Clip_64"
+        ]
+    },
+    "Add_66": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ],
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_67"
+        ],
+        "inbounds": [
+            "Conv_60",
+            "Conv_65"
+        ]
+    },
+    "Conv_67": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    96,
+                    576
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_68"
+        ],
+        "inbounds": [
+            "Add_66"
+        ]
+    },
+    "Conv_69": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    576,
+                    576
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_70"
+        ],
+        "inbounds": [
+            "Clip_68"
+        ]
+    },
+    "Conv_71": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    576,
+                    96
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_72"
+        ],
+        "inbounds": [
+            "Clip_70"
+        ]
+    },
+    "Add_72": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ],
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_73"
+        ],
+        "inbounds": [
+            "Add_66",
+            "Conv_71"
+        ]
+    },
+    "Conv_73": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    96,
+                    576
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    96
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_74"
+        ],
+        "inbounds": [
+            "Add_72"
+        ]
+    },
+    "Conv_75": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    2,
+                    2
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    576,
+                    576
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    14,
+                    14,
+                    576
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    576
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_76"
+        ],
+        "inbounds": [
+            "Clip_74"
+        ]
+    },
+    "Conv_77": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    576,
+                    160
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    576
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Conv_78"
+        ],
+        "inbounds": [
+            "Clip_76"
+        ]
+    },
+    "Conv_78": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    160,
+                    960
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_79"
+        ],
+        "inbounds": [
+            "Conv_77"
+        ]
+    },
+    "Conv_80": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    960,
+                    960
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_81"
+        ],
+        "inbounds": [
+            "Clip_79"
+        ]
+    },
+    "Conv_82": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    960,
+                    160
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_83"
+        ],
+        "inbounds": [
+            "Clip_81"
+        ]
+    },
+    "Add_83": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ],
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_84"
+        ],
+        "inbounds": [
+            "Conv_77",
+            "Conv_82"
+        ]
+    },
+    "Conv_84": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    160,
+                    960
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_85"
+        ],
+        "inbounds": [
+            "Add_83"
+        ]
+    },
+    "Conv_86": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    960,
+                    960
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_87"
+        ],
+        "inbounds": [
+            "Clip_85"
+        ]
+    },
+    "Conv_88": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    960,
+                    160
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Add_89"
+        ],
+        "inbounds": [
+            "Clip_87"
+        ]
+    },
+    "Add_89": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ],
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "type": "add"
+        },
+        "outbounds": [
+            "Conv_90"
+        ],
+        "inbounds": [
+            "Add_83",
+            "Conv_88"
+        ]
+    },
+    "Conv_90": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    160,
+                    960
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    160
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_91"
+        ],
+        "inbounds": [
+            "Add_89"
+        ]
+    },
+    "Conv_92": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    1,
+                    1,
+                    1,
+                    1
+                ],
+                "weight_shape": [
+                    3,
+                    3,
+                    960,
+                    960
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_93"
+        ],
+        "inbounds": [
+            "Clip_91"
+        ]
+    },
+    "Conv_94": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    960,
+                    320
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    960
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    320
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Conv_95"
+        ],
+        "inbounds": [
+            "Clip_93"
+        ]
+    },
+    "Conv_95": {
+        "attr": {
+            "attr": {
+                "strides": [
+                    1,
+                    1
+                ],
+                "padding": [
+                    0,
+                    0,
+                    0,
+                    0
+                ],
+                "weight_shape": [
+                    1,
+                    1,
+                    320,
+                    1280
+                ]
+            },
+            "input_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    320
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    7,
+                    7,
+                    1280
+                ]
+            ],
+            "type": "conv"
+        },
+        "outbounds": [
+            "Clip_96"
+        ],
+        "inbounds": [
+            "Conv_94"
+        ]
+    },
+    "Gemm_99": {
+        "attr": {
+            "attr": {},
+            "input_shape": [
+                [
+                    10,
+                    1280
+                ]
+            ],
+            "output_shape": [
+                [
+                    10,
+                    1000
+                ]
+            ],
+            "type": "fc"
+        },
+        "outbounds": [],
+        "inbounds": [
+            "Flatten_98"
+        ]
+    }
+}
